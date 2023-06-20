@@ -16,7 +16,7 @@ export default function SiteHero() {
                 <h3 className='uppercase w-[170px] text-[12px] absolute top-[550px] left-1 ml-[40px]'>An underground tale ABOUT DISCOVERY AND INTERACTION DURING DISTOPIAN TIMES.</h3>
             </div>
             <div className='this_align_right pr-[40px] absolute -bottom-96 right-0 '>
-                <div className='flex-col  w-[260px] h-[102px] bg-[#FFCD00] justify-center text-center mb-[40px]'>
+                <div className='flex-col  w-[260px] h-[102px] bg-[#FFCD00] justify-center text-center'>
                     <div className='pt-6 pl-12 text-justify'>
                         <p className='text-black font-[400] text-[14px]'>LAUNCH HERE TO</p>
                         <p className='text-black font-[600] text-[20px] italic'>FIND EVENTS &gt;&gt;&gt;</p>
