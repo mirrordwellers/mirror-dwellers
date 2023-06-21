@@ -31,7 +31,7 @@ export default function SiteHero() {
           </h3>
         </div>
         <div className="this_align_right pr-[40px] absolute -bottom-96 right-0 ">
-          <Link href="/browse" prefetch >
+          <Link href="/browse">
             <div className="flex-col  w-[260px] h-[102px] bg-[#FFCD00] justify-center text-center">
               <div className="pt-6 pl-12 text-justify">
                 <p className="text-black font-[400] text-[14px]">
