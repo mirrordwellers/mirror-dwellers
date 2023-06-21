@@ -75,8 +75,8 @@ export default function page() {
 
       <div className="grid grid-cols-1 gap-5 md:grid-cols-3 lg:grid-cols-4">
         {cardsData.map((card, key) => (
-          <Link href="/">
-            <Card key={card.id}>
+          <Link href="/" key={card.id}>
+            <Card>
               <CardHeader>
                 <CardTitle>Card Title</CardTitle>
                 <CardDescription>Card Description</CardDescription>
@@ -95,8 +95,7 @@ export default function page() {
   )
 }
 
-{
-  /* <Link key={card.id} href="/">
+/* <Link key={card.id} href="/">
             <div className="overflow-hidden shadow rounded-2xl">
               <div className="w-400 h-500">
                 <Image
@@ -126,4 +125,3 @@ export default function page() {
               </div>
             </div>
           </Link> */
-}
