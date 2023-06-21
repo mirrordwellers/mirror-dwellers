@@ -20,8 +20,8 @@ export function PlatformInput() {
         <SelectGroup>
           <SelectLabel>Platforms</SelectLabel>
           <SelectItem value="PC">PC</SelectItem>
-          <SelectItem value="QUEST">QUEST</SelectItem>
-          <SelectItem value="Any">Any</SelectItem>
+          <SelectItem value="QUEST">Quest</SelectItem>
+          <SelectItem value="Any">Both</SelectItem>
         </SelectGroup>
       </SelectContent>
     </Select>
