@@ -67,29 +67,37 @@ const cardsData = [
 
 export default function page() {
   return (
-    <div>
-      {/* <div className="flex justify-center mt-32">
+    <div className="overflow-hidden">
+      <div className="flex justify-center mt-32 pb-[140px]">
         <SearchBar />
-      </div> */}
+      </div>
+
       <hr />
 
-      <div className="grid grid-cols-1 gap-5 md:grid-cols-3 lg:grid-cols-4">
-        {cardsData.map((card, key) => (
-          <Link href="/" key={card.id}>
-            <Card>
-              <CardHeader>
-                <CardTitle>Card Title</CardTitle>
-                <CardDescription>Card Description</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p>Card Content</p>
-              </CardContent>
-              <CardFooter>
-                <p>Card Footer</p>
-              </CardFooter>
-            </Card>
-          </Link>
-        ))}
+      <h1 className="text-[36px] relative left-52 top-4">Upcoming events</h1>
+
+      <div className="flex justify-center">
+        <div className="grid grid-cols-1 gap-3 md:grid-cols-3 lg:grid-cols-4 pt-[40px]">
+          {cardsData.map((card, key) => (
+            <Link href="/" key={card.id}>
+              <Card className="w-[265px]">
+                <div>
+                  <Image src={card.image} width={265} height={182} alt='' />
+                  <CardHeader>
+                    <CardDescription>{card.date}</CardDescription>
+                    <CardTitle>{card.title}</CardTitle>
+                  </CardHeader>
+                </div>
+                {/* <CardContent>
+                  <p>Card Content</p>
+                </CardContent>
+                <CardFooter>
+                  <p>Card Footer</p>
+                </CardFooter> */}
+              </Card>
+            </Link>
+          ))}
+        </div>
       </div>
     </div>
   )
