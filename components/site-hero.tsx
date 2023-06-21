@@ -1,9 +1,20 @@
 import React from "react"
+import Image from "next/image"
 import Link from "next/link"
+
+import backgroundImage from "../images/BackgroundImage.png"
 
 export default function SiteHero() {
   return (
-    <div className='bg-[url("../images/BackgroundImage.png")] bg-cover bg-center h-screen w-full'>
+    <div className="fixed w-full h-screen">
+      <Image
+        src={backgroundImage}
+        alt=""
+        priority
+        fill={true}
+        style={{ objectFit: "cover" }}
+        className="bg-center"
+      />
       <div className="relative flex justify-between">
         <div className="this_align_left w-[720px] h-[250px] ml-[80px]">
           <div className="leading-[85px] -rotate-90 absolute top-56 -left-36 ml-[40px]">
