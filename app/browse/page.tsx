@@ -79,10 +79,10 @@ export default function page() {
       <div className="flex justify-center">
         <div className="grid grid-cols-1 gap-3 md:grid-cols-3 lg:grid-cols-4 pt-[40px]">
           {cardsData.map((card, key) => (
-            <Link href="/" key={card.id}>
+            <Link href={`/browse/${card.id}`} key={card.id}>
               <Card className="w-[265px]">
                 <div>
-                  <Image src={card.image} width={265} height={182} alt='' />
+                  <Image src={card.image} width={265} height={182} alt="" />
                   <CardHeader>
                     <CardDescription>{card.date}</CardDescription>
                     <CardTitle>{card.title}</CardTitle>
