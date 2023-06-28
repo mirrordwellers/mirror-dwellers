@@ -42,6 +42,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           )}
         >
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            <SiteHeader />
             <div className="relative flex flex-col min-h-screen">
               <div className="flex-1">{children}</div>
             </div>

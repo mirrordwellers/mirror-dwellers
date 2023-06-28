@@ -41,3 +41,5 @@ export function DatePicker() {
     </Popover>
   )
 }
+
+// how to get a state value on another file?

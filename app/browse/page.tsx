@@ -1,6 +1,6 @@
 "use client"
 
-import React from "react"
+import React, { useState, useEffect } from "react"
 import Image from "next/image"
 import Link from "next/link"
 
@@ -66,6 +66,18 @@ const cardsData = [
 ]
 
 export default function page() {
+  const [allData, setAllData] = useState([])
+
+  function getEvents() {
+    fetch("http://localhost:5000/getAllEvent", {
+      method: "GET",
+    }).then((res) => res.json()).then((data) => {console.log(data), setAllData(data.data)})
+  }
+  
+  useEffect(() => {
+    getEvents()
+  }, [])
+
   return (
     <div className="overflow-hidden">
       <div className="flex justify-center mt-32 pb-[140px]">
@@ -78,14 +90,14 @@ export default function page() {
 
       <div className="flex justify-center">
         <div className="grid grid-cols-1 gap-3 md:grid-cols-3 lg:grid-cols-4 pt-[40px]">
-          {cardsData.map((card, key) => (
-            <Link href={`/browse/${card.id}`} key={card.id}>
+        {allData.map((card, key) => (
+            <Link href={`/browse/${card._id}`} key={card._id}>
               <Card className="w-[265px]">
                 <div>
-                  <Image src={card.image} width={265} height={182} alt="" />
+                  <Image src={card.thumbnail} width={265} height={182} alt="" />
                   <CardHeader>
-                    <CardDescription>{card.date}</CardDescription>
-                    <CardTitle>{card.title}</CardTitle>
+                    <CardDescription>{card.eventTime.substring(0, 10)}</CardDescription>
+                    <CardTitle>{card.eventTitle}</CardTitle>
                   </CardHeader>
                 </div>
                 {/* <CardContent>
