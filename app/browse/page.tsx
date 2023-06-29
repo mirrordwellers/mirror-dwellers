@@ -100,6 +100,9 @@ export default function page() {
                     <CardTitle>{card.eventTitle}</CardTitle>
                   </CardHeader>
                 </div>
+                <CardContent>
+                  <p>Type of event: {card.eventType} | Platform: {card.platform}</p>
+                </CardContent>
                 {/* <CardContent>
                   <p>Card Content</p>
                 </CardContent>

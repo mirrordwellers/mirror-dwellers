@@ -1,9 +1,6 @@
 "use client"
 
 import React from 'react'
-import { DatePicker } from '@/components/date-picker'
-import { TypeInput } from '@/components/type-input'
-import { PlatformInput } from '@/components/platform-input'
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 
@@ -23,15 +20,17 @@ import {
 } from "@/components/ui/popover"
 
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 
-import Link from 'next/link'
+import { Grid } from 'lucide-react'
+import { MapPin } from 'lucide-react'
 
 export default function page() {
 
@@ -59,8 +58,6 @@ export default function page() {
     }
 }
 
-
-
 function uploadEvent(e) {
   e.preventDefault()
   fetch("http://localhost:5000/new-event", {
@@ -74,7 +71,10 @@ function uploadEvent(e) {
     body: JSON.stringify({
       thumbnail, 
       eventTitle: title,
-      eventTime: date
+      eventTime: date,
+      eventType: typeOption,
+      platform: platformOption
+
     })
   }).then((res) => res.json()).then((data) => {console.log(data)})
   window.location.href = "/browse"
@@ -91,6 +91,46 @@ useEffect(() => {
 }, [])
 
 const [date, setDate] = React.useState<Date>()
+
+const [typeOption, setTypeOption] = useState("+18")
+const EventOptionType = () => {
+   return (
+      <Select value={typeOption} onValueChange={setTypeOption}>
+        <SelectTrigger className="w-[180px] h-[51px] text-[black]">
+          <span><Grid /></span>
+          <SelectValue placeholder="Type of event" />
+        </SelectTrigger>
+        <SelectContent>
+        <SelectGroup>
+          <SelectLabel>Events</SelectLabel>
+              <SelectItem value="Any">Any</SelectItem>
+              <SelectItem value="+18">+18</SelectItem>
+        </SelectGroup>
+      </SelectContent>
+    </Select>
+   ) 
+  }
+
+const [platformOption, setPlatformOption] = useState("Both")
+const EventPlatformOption = () => {
+   return (
+      <Select value={platformOption} onValueChange={setPlatformOption}>
+        <SelectTrigger className="w-[180px] h-[51px] text-[black]">
+          <span><MapPin /></span>
+          <SelectValue placeholder="Type of event" />
+        </SelectTrigger>
+        <SelectContent>
+        <SelectGroup>
+          <SelectLabel>Events</SelectLabel>
+              <SelectItem value="PC">PC</SelectItem>
+              <SelectItem value="Quest">Quest</SelectItem>
+              <SelectItem value="Both">Both</SelectItem>
+        </SelectGroup>
+      </SelectContent>
+    </Select>
+   ) 
+  }
+
   return (
     <div className='flex justify-center'>
       <div className=' bg-[#AA00FF] w-[400px] flex h-screen justify-center items-center'>
@@ -117,6 +157,7 @@ const [date, setDate] = React.useState<Date>()
                   !date && "text-muted-foreground"
                 )}
                 onChange={(e) => setEventDate(e.currentTarget.value)}
+                aria-required="true"
               >
                 <CalendarIcon className="mr-2 h-4 w-4" />
                 {date ? format(date, "PPP") : <span>Pick a date</span>}
@@ -141,9 +182,15 @@ const [date, setDate] = React.useState<Date>()
             onChange={(e) => setTitle(e.currentTarget.value)}
           />
           <span className='text-[18px] mb-4 mt-4'>Choose the event type</span>
-          <TypeInput />
+          
+          {/* <TypeInput /> */}
+
+          <EventOptionType />
+
           <span className='text-[18px] mb-4 mt-4'>Choose the event Platform</span>
-          <PlatformInput />
+          {/* <PlatformInput /> */}
+
+          <EventPlatformOption />
       
           <button className='h-[51px] w-[146px] bg-[#FFCD00] text-[black] font-[500]' onClick={uploadEvent}>POST EVENT</button>
         </section>
@@ -151,3 +198,47 @@ const [date, setDate] = React.useState<Date>()
     </div>
   )
 }
+
+          {/* <Select>
+            <SelectTrigger className="w-[180px] h-[51px] text-[black]">
+              <span className="-mr-8"><MapPin /></span>
+              <SelectValue placeholder="Platform" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup onChange={(e) => setSelectedPlatformOption(e.currentTarget.value)}>
+                <SelectLabel>Platforms</SelectLabel>
+                  {platformOptions.map((o) => (
+                    <SelectItem key={o.value} value={o.value}>{o.label}</SelectItem>
+                  ))}
+              </SelectGroup>
+            </SelectContent>
+          </Select> */}
+
+                    {/* <Select>
+            <SelectTrigger className="w-[180px] h-[51px] text-[black]">
+              <span><Grid /></span>
+              <SelectValue placeholder="Type of event" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectLabel>Events</SelectLabel>
+                    <SelectItem value="Any">Any</SelectItem>
+                    <SelectItem value="+18">+18</SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select> */}
+
+                    {/* <Select>
+            <SelectTrigger className="w-[180px] h-[51px] text-[black]">
+              <span><Grid /></span>
+              <SelectValue placeholder="Type of event" />
+            </SelectTrigger>
+            <SelectContent >
+              <SelectGroup>
+                <SelectLabel>Events</SelectLabel>
+                {typeOptions.map((o) => (
+                    <SelectItem key={o.value} value={o.value}>{o.label}</SelectItem>
+                  ))} 
+              </SelectGroup>
+            </SelectContent>
+          </Select> */}
