@@ -76,6 +76,7 @@ export default function page() {
   
   useEffect(() => {
     getEvents()
+    console.log(allData)
   }, [])
 
   return (

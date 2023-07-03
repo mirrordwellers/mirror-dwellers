@@ -32,6 +32,8 @@ import {
 import { Grid } from 'lucide-react'
 import { MapPin } from 'lucide-react'
 
+import { Textarea } from "@/components/ui/textarea"
+
 export default function page() {
 
   // the functions and states are used for uploading the data for the database
@@ -40,6 +42,9 @@ export default function page() {
   const [thumbnail, setThumbnail] = useState("")
   const [title, setTitle] = useState('')
   const [eventDate, setEventDate] = useState('')
+  const [description, setDescription] = useState('')
+  const [eventLink, setEventLink] = useState('')
+
 
   const [allData, setAllData] = useState([])
   const [loading, setLoading] = useState([])
@@ -73,7 +78,9 @@ function uploadEvent(e) {
       eventTitle: title,
       eventTime: date,
       eventType: typeOption,
-      platform: platformOption
+      platform: platformOption,
+      description: description,
+      eventLink: eventLink,
 
     })
   }).then((res) => res.json()).then((data) => {console.log(data)})
@@ -133,7 +140,7 @@ const EventPlatformOption = () => {
 
   return (
     <div className='flex justify-center'>
-      <div className=' bg-[#AA00FF] w-[400px] flex h-screen justify-center items-center'>
+      <div className=' bg-[#AA00FF] w-[400px] flex h-full justify-center items-center'>
         <section className='grid '>
           <h1 className='text-center font-[500] text-[32px] mb-8'>Create your event</h1>
           <span className='text-[18px] mb-4 mt-4'>Choose the event cover</span>
@@ -191,6 +198,24 @@ const EventPlatformOption = () => {
           {/* <PlatformInput /> */}
 
           <EventPlatformOption />
+
+          <span className='text-[18px] mb-4 mt-4'>Event Description</span>
+
+          <div className="grid w-full gap-1.5 mb-4 bg-[#3B3B3B]">
+            <Textarea  placeholder="Type the event description here." value={description} onChange={(e) => setDescription(e.currentTarget.value)} />
+          </div>
+
+          <span className='text-[18px] mb-4 mt-4'>Event Link / Discord Link</span>
+          
+          <div className="grid w-full gap-1.5 mb-4 bg-[#3B3B3B]">
+            <input 
+              type="url" 
+              placeholder='&nbsp; Event link' 
+              className='h-10' 
+              value={eventLink}
+              onChange={(e) => setEventLink(e.currentTarget.value)}
+            />
+          </div>
       
           <button className='h-[51px] w-[146px] bg-[#FFCD00] text-[black] font-[500]' onClick={uploadEvent}>POST EVENT</button>
         </section>
