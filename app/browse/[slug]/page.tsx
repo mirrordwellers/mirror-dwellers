@@ -35,7 +35,7 @@ return (
         <div>
           <Image src={post.thumbnail} width={465} height={382} alt="" />
           <CardHeader>
-            <CardDescription>{post.eventTime}</CardDescription>
+            <CardDescription>{post.eventTime.substring(0, 10)}</CardDescription>
             <CardTitle>{post.eventTitle}</CardTitle>
           </CardHeader>
         </div>
