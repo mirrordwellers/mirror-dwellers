@@ -196,33 +196,33 @@ export default function page() {
   )
 }
 
-/* <Link key={card.id} href="/">
-            <div className="overflow-hidden shadow rounded-2xl">
-              <div className="w-400 h-500">
-                <Image
-                  className="object-cover w-full h-40 h-50 rounded-t-2xl"
-                  src={card.image}
-                  alt=""
-                  width={400}
-                  height={500}
-                  sizes="(max-width: 768px) 100vw,
-                (max-width: 1200px) 50vw,
-                33vw"
-                  quality={50}
-                />
-              </div>
-              <div className="relative z-20 grid grid-cols-4 px-3 py-2 -mt-5 bg-white rounded-2xl">
-                <div className="col-span-3 p-0">
-                  <h5 className="overflow-hidden font-normal tracking-tight text-gray-900 lg:w-auto text-md md:text-sm lg:text-md text-ellipsis whitespace-nowrap">
-                    {card.title}
-                  </h5>
-                  <p className="text-sm font-normal dark:text-gray-400">
-                    {card.date}
-                  </p>
-                </div>
-                <div className="flex mt-auto mb-auto border-black justify-self-end ">
-                  <button className="flex items-center justify-end w-10 text-sm font-medium text-center border-black h-9 p-auto rounded-2xl opacity-90"></button>
-                </div>
-              </div>
-            </div>
-          </Link> */
+  // allData.filter((card) => {
+  //   if (query === "") {
+  //     //if query is empty
+  //     return card;
+  //   } else if (card.eventTitle.toLowerCase().includes(query.toLowerCase())) {
+  //     //returns filtered array
+  //     return card;
+  //   }
+  // }).map((card, key) => (
+  //   <Link href={`/browse/${card._id}`} key={card._id}>
+  //   <Card className="w-[265px]" key={key}>
+  //     <div>
+  //       <Image src={card.thumbnail} width={265} height={182} alt="" />
+  //       <CardHeader>
+  //         <CardDescription>{card.eventTime.substring(0, 10)}</CardDescription>
+  //         <CardTitle>{card.eventTitle}</CardTitle>
+  //       </CardHeader>
+  //     </div>
+  //     <CardContent>
+  //       <p>Type of event: {card.eventType} | Platform: {card.platform}</p>
+  //     </CardContent>
+  //     {/* <CardContent>
+  //       <p>Card Content</p>
+  //       </CardContent>
+  //       <CardFooter>
+  //       <p>Card Footer</p>
+  //     </CardFooter> */}
+  //   </Card>
+  // </Link>
+  // ))
