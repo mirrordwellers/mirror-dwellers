@@ -1,14 +1,14 @@
 import Image from "next/image"
 import Link from "next/link"
 
-import { SiteHeader } from "@/components/site-header"
+import { SiteHeaderVariant } from "@/components/site-header-variant"
 
 import backgroundImage from "../images/BackgroundImage.png"
 
 export default function IndexPage() {
   return (
     <section className="overflow-hidden">
-      <SiteHeader />
+      <SiteHeaderVariant />
       <div className="fixed w-full h-screen">
         <Image
           src={backgroundImage}
