@@ -48,14 +48,14 @@ const timezone = [
   { label: "Mountain Standard Time (MST)", value: "GMT-07:00" },
   { label: "Central Standard Time (CST)", value: "GMT-06:00" },
   { label: "Eastern Standard Time (EST)", value: "GMT-05:00" },
-  { label: "Greenwich Mean Time (GMT)", value: "GMT+00:00" },
-  { label: "Coordinated Universal Time (UTC)", value: "GMT+00:00" },
+  { label: "Greenwich Mean Time (GMT/UTC)", value: "GMT+00:00" },
   { label: "Central European Time (CET)", value: "GMT+01:00" },
   { label: "Eastern European Time (EET)", value: "GMT+02:00" },
   { label: "Indian Standard Time (IST)", value: "GMT+05:30" },
   { label: "China Standard Time (CST)", value: "GMT+08:00" },
   { label: "Japan Standard Time (JST)", value: "GMT+09:00" },
   { label: "Australian Eastern Standard Time (AEST)", value: "GMT+10:00" },
+  // { label: "Chinese", value: "zh" },
 ] as const
 
 const FormSchema = z.object({
@@ -73,13 +73,11 @@ const FormSchema = z.object({
   dob: z.date({
     required_error: "A date of birth is required.",
   }),
-  email: z
-    .string({
-      required_error: "Please select an email to display.",
-    })
-    .email(),
+  platform: z.string({
+    required_error: "Please select a platform.",
+  }),
   timezone: z.string({
-    required_error: "Please select a language.",
+    required_error: "Please select a timezone.",
   }),
 })
 
@@ -188,39 +186,6 @@ export default function page() {
 
             <FormField
               control={form.control}
-              name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Email</FormLabel>
-                  <Select
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                  >
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select a verified email to display" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      <SelectItem value="m@example.com">
-                        m@example.com
-                      </SelectItem>
-                      <SelectItem value="m@google.com">m@google.com</SelectItem>
-                      <SelectItem value="m@support.com">
-                        m@support.com
-                      </SelectItem>
-                    </SelectContent>
-                  </Select>
-                  <FormDescription>
-                    You can manage email addresses in your
-                  </FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
               name="timezone"
               render={({ field }) => (
                 <FormItem className="flex flex-col">
@@ -232,7 +197,7 @@ export default function page() {
                           variant="outline"
                           role="combobox"
                           className={cn(
-                            "w-[200px] justify-between",
+                            "w-full justify-between",
                             !field.value && "text-muted-foreground"
                           )}
                         >
@@ -245,9 +210,9 @@ export default function page() {
                         </Button>
                       </FormControl>
                     </PopoverTrigger>
-                    <PopoverContent className="w-[200px] p-0">
+                    <PopoverContent className="w-full p-0">
                       <Command>
-                        <CommandInput placeholder="Search framework..." />
+                        <CommandInput placeholder="Search timezone..." />
                         <CommandEmpty>No framework found.</CommandEmpty>
                         <CommandGroup>
                           {timezone.map((timezone) => (
@@ -275,6 +240,38 @@ export default function page() {
                   </Popover>
                   <FormDescription>
                     This is the language that will be used in the dashboard.
+                  </FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="platform"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Platform</FormLabel>
+                  <Select>
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select event platform" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      <SelectItem value="PC Compatible">
+                        Pc Compatible
+                      </SelectItem>
+                      <SelectItem value="Quest Compatible">
+                        Quest Compatible
+                      </SelectItem>
+                      <SelectItem value="Any Platform">
+                        Both Platforms
+                      </SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <FormDescription>
+                    You can manage email addresses in your
                   </FormDescription>
                   <FormMessage />
                 </FormItem>
