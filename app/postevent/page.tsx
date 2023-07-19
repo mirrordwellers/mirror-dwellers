@@ -72,9 +72,9 @@ export default function page() {
   // this needs to be a form. I will make this with react hook form + zod (look at shadcn docs)
 
   return (
-    <div className="">
+    <div>
       <SiteHeader />
-      <div className="container border-2 border-red-500">Hello World</div>
+      <div className="p-4 border-2 border-red-500">Hello World</div>
     </div>
   )
 }
