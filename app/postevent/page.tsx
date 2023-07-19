@@ -1,100 +1,108 @@
 "use client"
 
-// import React, { useEffect, useState } from "react"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { format } from "date-fns"
+import { Calendar as CalendarIcon } from "lucide-react"
+import { useForm } from "react-hook-form"
+import * as z from "zod"
+
+import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { DatePicker } from "@/components/date-picker"
-import { PlatformInput } from "@/components/platform-input"
+import { Calendar } from "@/components/ui/calendar"
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form"
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
+import { toast } from "@/components/ui/use-toast"
 import { SiteHeader } from "@/components/site-header"
-import { TypeInput } from "@/components/type-input"
+
+const FormSchema = z.object({
+  dob: z.date({
+    required_error: "A date of birth is required.",
+  }),
+})
 
 export default function page() {
-  // the functions and states are used for uploading the data for the database
-  // a node app has to be configurated to all this stuff work
+  
+  const form = useForm<z.infer<typeof FormSchema>>({
+    resolver: zodResolver(FormSchema),
+  })
 
-  // const [thumbnail, setThumbnail] = useState("")
-  // const [title, setTitle] = useState("")
-  // const [eventDate, setEventDate] = useState("")
-
-  // const [allData, setAllData] = useState([])
-
-  // function convertToBase64(e) {
-  //   console.log(e)
-  //   var reader = new FileReader()
-  //   reader.readAsDataURL(e.target.files[0])
-  //   reader.onload = () => {
-  //     console.log(reader.result) // base64encoded string
-  //     setThumbnail(reader.result)
-  //   }
-  //   reader.onerror = (error) => {
-  //     console.log("Error: ", error)
-  //   }
-  // }
-
-  // function uploadImage(e) {
-  //   e.preventDefault()
-  //   fetch("http://localhost:5000/upload-image", {
-  //     method: "POST",
-  //     crossDomain: true,
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       Accept: "application/json",
-  //       "Access-Control-Allow-Origin": "*",
-  //     },
-  //     body: JSON.stringify({
-  //       thumbnailBase64: thumbnail,
-  //       eventTitle: title,
-  //       eventTime: eventDate,
-  //     }),
-  //   })
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       console.log(data)
-  //     })
-  //   window.location.reload()
-  // }
-
-  // function getImage() {
-  //   fetch("http://localhost:5000/get-image", {
-  //     method: "GET",
-  //   })
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       console.log(data), setAllData(data.data)
-  //     })
-  // }
-
-  // useEffect(() => {
-  //   getImage()
-  // }, [])
-
-  // this needs to be a form. I will make this with react hook form + zod (look at shadcn docs)
+  function onSubmit(data: z.infer<typeof FormSchema>) {
+    toast({
+      title: "You submitted the following values:",
+      description: (
+        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
+        </pre>
+      ),
+    })
+  }
 
   return (
     <div>
       <SiteHeader />
-      <div className="p-4 border-2 border-red-500">Hello World</div>
+      <div className="p-4">
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+            <FormField
+              control={form.control}
+              name="dob"
+              render={({ field }) => (
+                <FormItem className="flex flex-col">
+                  <FormLabel>Date of birth</FormLabel>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <FormControl>
+                        <Button
+                          variant={"outline"}
+                          className={cn(
+                            "w-[240px] pl-3 text-left font-normal",
+                            !field.value && "text-muted-foreground"
+                          )}
+                        >
+                          {field.value ? (
+                            format(field.value, "PPP")
+                          ) : (
+                            <span>Pick a date</span>
+                          )}
+                          <CalendarIcon className="w-4 h-4 ml-auto opacity-50" />
+                        </Button>
+                      </FormControl>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-0" align="start">
+                      <Calendar
+                        mode="single"
+                        selected={field.value}
+                        onSelect={field.onChange}
+                        disabled={(date) =>
+                          date > new Date() || date < new Date("1900-01-01")
+                        }
+                        initialFocus
+                      />
+                    </PopoverContent>
+                  </Popover>
+                  <FormDescription>
+                    Your date of birth is used to calculate your age.
+                  </FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <Button type="submit">Submit</Button>
+          </form>
+        </Form>
+      </div>
     </div>
   )
 }
-
-// {
-/* <h1 className="text-xl font-medium text-center">Create your event</h1>
-        <div className="grid w-full max-w-sm items-center gap-1.5">
-          <Label htmlFor="email">Title</Label>
-          <Input type="email" id="email" placeholder="Tittle of the event" />
-          <Label htmlFor="picture">Picture</Label>
-          <Input id="picture" type="file" />
-          <Label htmlFor="date">Pick a date</Label>
-          <DatePicker />
-          <Label htmlFor="type">Type</Label>
-          <TypeInput />
-          <Label htmlFor="platform">Platform</Label>
-          <PlatformInput />
-          <Button className="h-12 w-[146px] bg-[#FFCD00] text-[black] font-[500]">
-            Post event
-          </Button>
-        </div>
-      </div> */
-// }
