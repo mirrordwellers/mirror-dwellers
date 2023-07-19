@@ -58,6 +58,9 @@ const timezone = [
   // { label: "Chinese", value: "zh" },
 ] as const
 
+const MAX_FILE_SIZE = 500000;
+const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/jpg", "image/png", "image/webp"];
+
 const FormSchema = z.object({
   title: z.string({
     required_error: "A title is required.",
@@ -79,6 +82,14 @@ const FormSchema = z.object({
   timezone: z.string({
     required_error: "Please select a timezone.",
   }),
+  // needs redo: https://stackoverflow.com/questions/72674930/zod-validator-validate-image
+  picture: z
+    .any()
+    .refine((file) => file?.size <= MAX_FILE_SIZE, `Max image size is 5MB.`)
+    .refine(
+      (file) => ACCEPTED_IMAGE_TYPES.includes(file?.type),
+      "Only .jpg, .jpeg, .png and .webp formats are supported."
+    )
 })
 
 export default function page() {
@@ -184,6 +195,7 @@ export default function page() {
               )}
             />
 
+            {/* not working */}
             <FormField
               control={form.control}
               name="timezone"
@@ -273,6 +285,22 @@ export default function page() {
                   <FormDescription>
                     You can manage email addresses in your
                   </FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            {/* not working */}
+            <FormField
+              control={form.control}
+              name="picture"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel htmlFor="picture">Image</FormLabel>
+                  <FormControl>
+                    <Input id="picture" type="file" {...field} />
+                  </FormControl>
+                  <FormDescription>Upload a cover picture</FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
