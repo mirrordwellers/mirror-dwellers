@@ -320,7 +320,7 @@ export default function page() {
               name="type"
               render={({ field }) => (
                 <FormItem className="space-y-3">
-                  <FormLabel>Must be over 18 years old to join</FormLabel>
+                  <FormLabel>Must be over 18 years old to join?</FormLabel>
                   <FormControl>
                     <RadioGroup
                       onValueChange={field.onChange}
