@@ -1,9 +1,10 @@
-![Vector](https://github.com/virtualrejects/open-beta/assets/40698300/df1056f3-5c68-42ff-bed4-de70c82bc986)
-
+![Vector](https://github.com/virtualrejects/.github/assets/40698300/dfa3f0a3-bf78-46f1-83bc-850d2967a3e4)
 
 Hello everyone,
 
 We're incredibly excited to announce that our project, an open-source virtual reality events platform, is in need of talented and creative individuals to join us on this thrilling journey. As a personal open-source endeavor, we are not a company but a passionate community, and we are eager to welcome all the help we can get.
+
+Check the ongoing project demo [here](https://open-beta-private.vercel.app/).
 
 <details><summary> Who are we looking for?</summary>
 <p>
@@ -43,12 +44,14 @@ Best regards,
 
 <hr />
 
-Tech Features
-- Next.js 13 App Directory
+Stack
+- Next.js 13.4
 - Radix UI Primitives
 - Tailwind CSS
 - Icons from [Lucide](https://lucide.dev)
 - Dark mode with `next-themes`
+- React Form Hooks
+- Zod
 - Tailwind CSS class sorting, merging, and linting.
 
-Licensed under the [MIT license](https://github.com/virtualrejects/open-beta/blob/master/LICENSE).
+Licensed under the [MIT license](https://github.com/shadcn/ui/blob/main/LICENSE.md).
