@@ -54,4 +54,4 @@ Stack
 - Zod
 - Tailwind CSS class sorting, merging, and linting.
 
-Licensed under the [MIT license](https://github.com/shadcn/ui/blob/main/LICENSE.md).
+Licensed under the [MIT license](https://github.com/virtualrejects/open-beta/blob/master/LICENSE).
