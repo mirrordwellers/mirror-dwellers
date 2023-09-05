@@ -1,4 +1,4 @@
-![Vector](https://github.com/virtualrejects/.github/assets/40698300/dfa3f0a3-bf78-46f1-83bc-850d2967a3e4)
+![bgoriginal](https://github.com/virtualrejects/mirrordwellers-beta-nextjs/assets/40698300/a0624da6-3503-4dc4-ad57-f2e58a022b97)
 
 Stack
 - Next.js 13.4
