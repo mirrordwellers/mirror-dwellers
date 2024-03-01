@@ -44,12 +44,15 @@ We truly value each person's involvement and are grateful for all the help we ca
 <hr />
 
 Stack
-- Next.js 13.4
+- Next.js 14.1
 - Radix UI Primitives / Shadcn UI
 - Tailwind CSS
-- Card style from [UI.Aceternity](https://ui.aceternity.com)
-- Icons from [Lucide](https://lucide.dev) and [Tabler](https://tabler.io/icons)
+- Card UI from [Aceternity](https://ui.aceternity.com)
+- Serverless Postgress with [Neon](https://neon.tech/)
+- Drizzle ORM
 - React Form Hooks
 - Tanstack/react-query
+- Icons from [Lucide](https://lucide.dev) and [Tabler](https://tabler.io/icons)
 - Zod
-- Tailwind CSS class sorting, merging, and linting.
+
+Licensed under the [MIT license](https://github.com/virtualrejects/open-beta/blob/master/LICENSE).
